@@ -19,8 +19,13 @@ if [ ! -f "$HK_LOCATION" ]
 then
     echo "-----> Installing hk..."
     curl -sL -A "`uname -sp`" https://hk.heroku.com/hk.gz | zcat >$HK_LOCATION && chmod +x $HK_LOCATION
-    echo "       ... done."
+else
+    echo "-----> Updating hk..."
+    $HK_LOCATION update
 fi
+echo "       ... done."
+echo -n "       version: "
+$HK_LOCATION version
 
 echo "-----> Copying hk to BUILD_DIR"
 cp "$HK_LOCAITON" "$BUILD_DIR"
