@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+# fail fast
+set -e
+
+
+# parse args
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+
+#create the cache dir if it doesn't exist
+mkdir -p $CACHE_DIR
+
+HK_LOCATION=$CACHE_DIR/hk
+if [ ! -f "$HK_LOCATION" ]
+then
+    echo "-----> Installing hk..."
+    curl -sL -A "`uname -sp`" https://hk.heroku.com/hk.gz | zcat >$HK_LOCATION && chmod +x $HK_LOCATION
+    echo "       ... done."
+fi
+
+echo "-----> Copying hk to BUILD_DIR"
+cp "$HK_LOCAITON" "$BUILD_DIR"
+
