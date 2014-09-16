@@ -46,7 +46,7 @@ echo -n "       version: "
 $HK_LOCATION version
 
 echo "-----> Copying hk to BUILD_DIR"
-cp "$HK_LOCAITON" "$BUILD_DIR"
+cp "$HK_LOCATION" "$BUILD_DIR"
 
 
 if [ -n "$HEROKU_USERNAME" ] && [ -n "$HEROKU_AUTH_TOKEN" ]
