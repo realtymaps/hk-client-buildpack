@@ -35,14 +35,14 @@ mkdir -p $CACHE_DIR
 HK_LOCATION=$CACHE_DIR/hk
 if [ ! -f "$HK_LOCATION" ]
 then
-    echo "-----> Installing hk..."
+    echo -n "-----> Installing hk... "
     curl -sL -A "`uname -sp`" https://hk.heroku.com/hk.gz | zcat >$HK_LOCATION && chmod +x $HK_LOCATION
 else
-    echo "-----> Updating hk..."
+    echo -n "-----> Updating hk... "
     $HK_LOCATION update
 fi
-echo "       ... done."
-echo -n "       version: "
+echo "done."
+echo -n "       hk version: "
 $HK_LOCATION version
 
 echo "-----> Copying hk to BUILD_DIR"
