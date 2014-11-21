@@ -39,7 +39,7 @@ then
     curl -sL -A "`uname -sp`" https://hk.heroku.com/hk.gz | zcat >$HK_LOCATION && chmod +x $HK_LOCATION
 else
     echo -n "-----> Updating hk... "
-    $HK_LOCATION update
+    $HK_LOCATION update || echo 'updateing hk failed, moving along must be a problem with hk latest itself.'
 fi
 echo "done."
 echo -n "       hk version: "
@@ -54,4 +54,3 @@ then
     echo "-----> Installing Heroku credentials"
     echo -e "machine api.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_AUTH_TOKEN" >> $BUILD_DIR/.netrc
 fi
-
